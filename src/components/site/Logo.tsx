@@ -1,11 +1,11 @@
-import logo from "@/assets/umusave-logo.asset.json";
+import logoUrl from "@/assets/logo.png";
 import { Link } from "@tanstack/react-router";
 
 export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
   return (
     <Link to="/" className="flex items-center gap-3 group">
       <img
-        src={logo.url}
+        src={logoUrl}
         alt="Umusave Capital"
         width={48}
         height={48}
