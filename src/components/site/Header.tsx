@@ -8,6 +8,7 @@ const nav = [
   { to: "/about", label: "About" },
   {
     label: "Products",
+    to: "/products",
     children: [
       { to: "/international-broking", label: "International Broking" },
       { to: "/managed-accounts", label: "Managed Accounts" },
@@ -37,9 +38,11 @@ export function Header() {
           {nav.map((n) =>
             "children" in n ? (
               <div key={n.label} className="group relative">
-                <button className="flex items-center gap-1 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                <Link
+                  key={n.to}
+                  to={n.to} className="flex items-center gap-1 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
                   {n.label} <ChevronDown className="h-3.5 w-3.5 mt-0.5" />
-                </button>
+                </Link>
                 <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <div className="bg-background border border-border/60 rounded-2xl shadow-elegant p-2 min-w-[240px]">
                     {n.children.map((c) => (
