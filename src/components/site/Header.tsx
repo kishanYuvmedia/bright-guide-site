@@ -1,12 +1,20 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Logo } from "./Logo";
 
 const nav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/products", label: "Products" },
+  {
+    label: "Products",
+    children: [
+      { to: "/international-broking", label: "International Broking" },
+      { to: "/managed-accounts", label: "Managed Accounts" },
+      { to: "/discretionary-investments", label: "Discretionary Investments" },
+      { to: "/corporate-enterprise-investments", label: "Corporate & Enterprise Investments" },
+    ],
+  },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -26,16 +34,37 @@ export function Header() {
       <div className="container mx-auto px-6 flex items-center justify-between h-20">
         <Logo />
         <nav className="hidden lg:flex items-center gap-9">
-          {nav.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative [&.active]:text-primary [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:-bottom-2 [&.active]:after:left-0 [&.active]:after:right-0 [&.active]:after:h-px [&.active]:after:bg-gold"
-              activeOptions={{ exact: n.to === "/" }}
-            >
-              {n.label}
-            </Link>
-          ))}
+          {nav.map((n) =>
+            "children" in n ? (
+              <div key={n.label} className="group relative">
+                <button className="flex items-center gap-1 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                  {n.label} <ChevronDown className="h-3.5 w-3.5 mt-0.5" />
+                </button>
+                <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="bg-background border border-border/60 rounded-2xl shadow-elegant p-2 min-w-[240px]">
+                    {n.children.map((c) => (
+                      <Link
+                        key={c.to}
+                        to={c.to}
+                        className="block rounded-xl px-4 py-2.5 text-sm font-medium text-foreground/80 hover:bg-secondary hover:text-primary transition-colors"
+                      >
+                        {c.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={n.to}
+                to={n.to}
+                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative [&.active]:text-primary [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:-bottom-2 [&.active]:after:left-0 [&.active]:after:right-0 [&.active]:after:h-px [&.active]:after:bg-gold"
+                activeOptions={{ exact: n.to === "/" }}
+              >
+                {n.label}
+              </Link>
+            )
+          )}
         </nav>
         <div className="flex items-center gap-3">
           <Link
@@ -56,16 +85,34 @@ export function Header() {
       {open && (
         <div className="lg:hidden border-t border-border bg-background">
           <div className="container mx-auto px-6 py-4 flex flex-col gap-3">
-            {nav.map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                onClick={() => setOpen(false)}
-                className="py-2 text-foreground/80 hover:text-primary"
-              >
-                {n.label}
-              </Link>
-            ))}
+            {nav.map((n) =>
+              "children" in n ? (
+                <div key={n.label}>
+                  <span className="py-2 block text-foreground/60 text-xs uppercase tracking-wider font-semibold">{n.label}</span>
+                  <div className="flex flex-col gap-1 pl-4 border-l-2 border-border mb-2">
+                    {n.children.map((c) => (
+                      <Link
+                        key={c.to}
+                        to={c.to}
+                        onClick={() => setOpen(false)}
+                        className="py-1.5 text-foreground/80 hover:text-primary"
+                      >
+                        {c.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  onClick={() => setOpen(false)}
+                  className="py-2 text-foreground/80 hover:text-primary"
+                >
+                  {n.label}
+                </Link>
+              )
+            )}
           </div>
         </div>
       )}

@@ -33,6 +33,12 @@ export function Footer() {
             <li><Link to="/" className="hover:text-gold">Home</Link></li>
             <li><Link to="/about" className="hover:text-gold">About Us</Link></li>
             <li><Link to="/products" className="hover:text-gold">Products</Link></li>
+            <li className="pl-4 border-l border-primary-foreground/20 space-y-2 mt-2">
+              <Link to="/international-broking" className="block hover:text-gold text-sm">International Broking</Link>
+              <Link to="/managed-accounts" className="block hover:text-gold text-sm">Managed Accounts</Link>
+              <Link to="/discretionary-investments" className="block hover:text-gold text-sm">Discretionary Investments</Link>
+              <Link to="/corporate-enterprise-investments" className="block hover:text-gold text-sm">Corporate &amp; Enterprise</Link>
+            </li>
             <li><Link to="/contact" className="hover:text-gold">Contact</Link></li>
           </ul>
         </div>

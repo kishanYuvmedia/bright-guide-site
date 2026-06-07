@@ -69,7 +69,7 @@ const services = [
   {
     icon: Building2,
     img: corporateInvestmentsImg,
-    to: undefined,
+    to: "/corporate-enterprise-investments",
     title: "Corporate & Enterprise Investments",
     headline: "Make Your Business Capital Work Harder — Safely.",
     desc: "Safe and creditworthy instruments to grow business capital. Offering both liquidity and capital appreciation, Umusave becomes a reliable financial and investment management partner — a fractional CIO for your treasury.",
