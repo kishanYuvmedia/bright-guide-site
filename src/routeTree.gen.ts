@@ -10,6 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProductsRouteImport } from './routes/products'
+import { Route as ManagedAccountsRouteImport } from './routes/managed-accounts'
+import { Route as InternationalBrokingRouteImport } from './routes/international-broking'
+import { Route as DiscretionaryInvestmentsRouteImport } from './routes/discretionary-investments'
+import { Route as CorporateEnterpriseInvestmentsRouteImport } from './routes/corporate-enterprise-investments'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -19,6 +23,28 @@ const ProductsRoute = ProductsRouteImport.update({
   path: '/products',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ManagedAccountsRoute = ManagedAccountsRouteImport.update({
+  id: '/managed-accounts',
+  path: '/managed-accounts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternationalBrokingRoute = InternationalBrokingRouteImport.update({
+  id: '/international-broking',
+  path: '/international-broking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscretionaryInvestmentsRoute =
+  DiscretionaryInvestmentsRouteImport.update({
+    id: '/discretionary-investments',
+    path: '/discretionary-investments',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CorporateEnterpriseInvestmentsRoute =
+  CorporateEnterpriseInvestmentsRouteImport.update({
+    id: '/corporate-enterprise-investments',
+    path: '/corporate-enterprise-investments',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -39,12 +65,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/corporate-enterprise-investments': typeof CorporateEnterpriseInvestmentsRoute
+  '/discretionary-investments': typeof DiscretionaryInvestmentsRoute
+  '/international-broking': typeof InternationalBrokingRoute
+  '/managed-accounts': typeof ManagedAccountsRoute
   '/products': typeof ProductsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/corporate-enterprise-investments': typeof CorporateEnterpriseInvestmentsRoute
+  '/discretionary-investments': typeof DiscretionaryInvestmentsRoute
+  '/international-broking': typeof InternationalBrokingRoute
+  '/managed-accounts': typeof ManagedAccountsRoute
   '/products': typeof ProductsRoute
 }
 export interface FileRoutesById {
@@ -52,20 +86,53 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/corporate-enterprise-investments': typeof CorporateEnterpriseInvestmentsRoute
+  '/discretionary-investments': typeof DiscretionaryInvestmentsRoute
+  '/international-broking': typeof InternationalBrokingRoute
+  '/managed-accounts': typeof ManagedAccountsRoute
   '/products': typeof ProductsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/products'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/corporate-enterprise-investments'
+    | '/discretionary-investments'
+    | '/international-broking'
+    | '/managed-accounts'
+    | '/products'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/products'
-  id: '__root__' | '/' | '/about' | '/contact' | '/products'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/corporate-enterprise-investments'
+    | '/discretionary-investments'
+    | '/international-broking'
+    | '/managed-accounts'
+    | '/products'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/corporate-enterprise-investments'
+    | '/discretionary-investments'
+    | '/international-broking'
+    | '/managed-accounts'
+    | '/products'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  CorporateEnterpriseInvestmentsRoute: typeof CorporateEnterpriseInvestmentsRoute
+  DiscretionaryInvestmentsRoute: typeof DiscretionaryInvestmentsRoute
+  InternationalBrokingRoute: typeof InternationalBrokingRoute
+  ManagedAccountsRoute: typeof ManagedAccountsRoute
   ProductsRoute: typeof ProductsRoute
 }
 
@@ -76,6 +143,34 @@ declare module '@tanstack/react-router' {
       path: '/products'
       fullPath: '/products'
       preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/managed-accounts': {
+      id: '/managed-accounts'
+      path: '/managed-accounts'
+      fullPath: '/managed-accounts'
+      preLoaderRoute: typeof ManagedAccountsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/international-broking': {
+      id: '/international-broking'
+      path: '/international-broking'
+      fullPath: '/international-broking'
+      preLoaderRoute: typeof InternationalBrokingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discretionary-investments': {
+      id: '/discretionary-investments'
+      path: '/discretionary-investments'
+      fullPath: '/discretionary-investments'
+      preLoaderRoute: typeof DiscretionaryInvestmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corporate-enterprise-investments': {
+      id: '/corporate-enterprise-investments'
+      path: '/corporate-enterprise-investments'
+      fullPath: '/corporate-enterprise-investments'
+      preLoaderRoute: typeof CorporateEnterpriseInvestmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -106,6 +201,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  CorporateEnterpriseInvestmentsRoute: CorporateEnterpriseInvestmentsRoute,
+  DiscretionaryInvestmentsRoute: DiscretionaryInvestmentsRoute,
+  InternationalBrokingRoute: InternationalBrokingRoute,
+  ManagedAccountsRoute: ManagedAccountsRoute,
   ProductsRoute: ProductsRoute,
 }
 export const routeTree = rootRouteImport

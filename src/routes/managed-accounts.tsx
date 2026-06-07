@@ -6,6 +6,12 @@ import {
 } from "lucide-react";
 import { SiteShell } from "@/components/site/SiteShell";
 import heroImg from "@/assets/Managed-Accounts.png";
+import sectorETFs from "@/assets/image/Sector-Specific-ETFs.png";
+import preScreened from "@/assets/image/Pre-Screened-Investment-Baskets.jpg";
+import thematic from "@/assets/image/Futuristic-growth-and-innovation-landscape.png";
+import followStrategies from "@/assets/image/Follow-the-Strategies-of-the-World's-Greatest-Investment-Managers.jpg";
+import individualSeeking from "@/assets/image/Individual-Investors-Seeking.png";
+import registrationSteps from "@/assets/image/From Registration to a Managed-Portfolio-in-Four-Simple-Steps.png";
 
 export const Route = createFileRoute("/managed-accounts")({
   head: () => ({
@@ -203,11 +209,13 @@ function ManagedAccountsPage() {
               Every Managed Account at Umusave Capital is built on three core investment pillars — each designed to give you the best of professional fund management without the barriers that have historically excluded African retail investors.
             </p>
           </div>
-          <div className="mt-14 space-y-16">
-            {features.map((f, i) => (
+            <div className="mt-14 space-y-16">
+            {features.map((f, i) => {
+              const imgs = [sectorETFs, preScreened, thematic];
+              return (
               <div key={f.title} className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${i % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}>
-                <div className="rounded-3xl overflow-hidden shadow-elegant aspect-[5/4] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                  <f.icon className="h-24 w-24 text-primary/30" />
+                <div className="rounded-3xl overflow-hidden shadow-elegant aspect-[5/4]">
+                  <img src={imgs[i]} alt={f.title} className="h-full w-full object-cover" loading="lazy" />
                 </div>
                 <div>
                   <div className="h-12 w-12 rounded-full gradient-gold grid place-items-center text-gold-foreground">
@@ -226,7 +234,8 @@ function ManagedAccountsPage() {
                   )}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -252,12 +261,12 @@ function ManagedAccountsPage() {
                     <h4 className="font-display text-lg text-primary">{u.title}</h4>
                     <p className="text-foreground/70 text-sm leading-relaxed">{u.desc}</p>
                   </div>
-                </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-          <div className="order-1 lg:order-2 rounded-3xl overflow-hidden shadow-elegant aspect-[5/4] bg-gradient-to-br from-gold/20 to-primary/10 flex items-center justify-center">
-            <Globe className="h-24 w-24 text-primary/30" />
+          </div>
+          <div className="order-1 lg:order-2 rounded-3xl overflow-hidden shadow-elegant aspect-[5/4]">
+            <img src={followStrategies} alt="Follow the Strategies of the World's Greatest Investment Managers" className="h-full w-full object-cover" loading="lazy" />
           </div>
         </div>
       </section>
@@ -276,8 +285,8 @@ function ManagedAccountsPage() {
           </div>
           <div className="mt-14 max-w-2xl mx-auto">
             <div className="bg-card rounded-3xl overflow-hidden shadow-soft border border-border/60">
-              <div className="aspect-[16/9] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                <Star className="h-20 w-20 text-primary/30" />
+              <div className="aspect-[16/9] overflow-hidden">
+                <img src={individualSeeking} alt="Individual Investors Seeking Hands-Off Global Exposure" className="h-full w-full object-cover" loading="lazy" />
               </div>
               <div className="p-8">
                 <p className="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Individual Investors Seeking Hands-Off Global Exposure</p>
@@ -316,8 +325,8 @@ function ManagedAccountsPage() {
             Getting started with a Umusave Managed Account is fully digital and designed to be straightforward — from your initial registration through to your first professionally managed investment.
           </p>
         </div>
-        <div className="mt-14 rounded-3xl overflow-hidden shadow-elegant aspect-[5/2] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-12">
-          <PieChart className="h-20 w-20 text-primary/30" />
+        <div className="mt-14 rounded-3xl overflow-hidden shadow-elegant aspect-[5/2] mb-12">
+          <img src={registrationSteps} alt="From Registration to a Managed Portfolio in Four Simple Steps" className="h-full w-full object-cover" loading="lazy" />
         </div>
         <div className="grid md:grid-cols-4 gap-6">
           {processSteps.map((s, i) => (

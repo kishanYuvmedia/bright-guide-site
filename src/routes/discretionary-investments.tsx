@@ -6,6 +6,11 @@ import {
 } from "lucide-react";
 import { SiteShell } from "@/components/site/SiteShell";
 import heroImg from "@/assets/Discretionary-Investments.png";
+import collaborativeOffice from "@/assets/image/Collaborative-innovation-in-a-modern-office.png";
+import proprietaryAI from "@/assets/image/A-Proprietary-AI-Engine-Built-for-Global-Market-Intelligence.png";
+import cyclicalCompounders from "@/assets/image/Cyclical-compounders-in-finance-strategy.png";
+import growthStage from "@/assets/image/Building-tomorrow-leaders-today.png";
+import hybridExposure from "@/assets/image/Hybrid-Exposure-Allocation.png";
 
 export const Route = createFileRoute("/discretionary-investments")({
   head: () => ({
@@ -196,8 +201,8 @@ function DiscretionaryPage() {
               Discretionary Investments at Umusave Capital represent the platform's most sophisticated investment offering. Unlike standard managed accounts or self-directed broking, our Discretionary platform deploys capital through a proprietary AI algorithm that continuously scans global markets for high-conviction opportunities — while human investment professionals retain oversight and control at every stage. The result is a portfolio management approach that combines the speed and analytical depth of machine intelligence with the strategic judgement that only experienced investors can provide.
             </p>
           </div>
-          <div className="rounded-3xl overflow-hidden shadow-elegant aspect-[5/4] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-            <Brain className="h-24 w-24 text-primary/30" />
+          <div className="rounded-3xl overflow-hidden shadow-elegant aspect-[5/4]">
+            <img src={collaborativeOffice} alt="Where Advanced Technology Meets Expert Human Judgement" className="h-full w-full object-cover" loading="lazy" />
           </div>
         </div>
         <div className="mt-16 grid md:grid-cols-3 gap-6">
@@ -226,8 +231,8 @@ function DiscretionaryPage() {
                 At the core of Umusave Capital's Discretionary Investment platform is a proprietary AI-driven investment engine — designed to operate with the analytical capacity of an institutional trading desk, deployed for individual investors across Africa. The algorithm is purpose-built for systematic macro investing across liquid global markets, giving your portfolio access to a level of market intelligence that was previously exclusive to the world's largest financial institutions.
               </p>
             </div>
-            <div className="order-1 lg:order-2 rounded-3xl overflow-hidden shadow-elegant aspect-[5/4] bg-gradient-to-br from-gold/20 to-primary/10 flex items-center justify-center">
-              <Cpu className="h-24 w-24 text-primary/30" />
+            <div className="order-1 lg:order-2 rounded-3xl overflow-hidden shadow-elegant aspect-[5/4]">
+              <img src={proprietaryAI} alt="A Proprietary AI Engine Built for Global Market Intelligence" className="h-full w-full object-cover" loading="lazy" />
             </div>
           </div>
           <div className="mt-14 grid md:grid-cols-3 gap-6">
@@ -259,10 +264,12 @@ function DiscretionaryPage() {
           </p>
         </div>
         <div className="mt-14 space-y-16">
-          {strategyLayers.map((l, i) => (
+          {strategyLayers.map((l, i) => {
+            const layersImgs = [cyclicalCompounders, growthStage, hybridExposure];
+            return (
             <div key={l.title} className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${i % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}>
-              <div className="rounded-3xl overflow-hidden shadow-elegant aspect-[5/4] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                <l.icon className="h-24 w-24 text-primary/30" />
+              <div className="rounded-3xl overflow-hidden shadow-elegant aspect-[5/4]">
+                <img src={layersImgs[i]} alt={l.title} className="h-full w-full object-cover" loading="lazy" />
               </div>
               <div>
                 <div className="h-12 w-12 rounded-full gradient-gold grid place-items-center text-gold-foreground">
@@ -272,7 +279,8 @@ function DiscretionaryPage() {
                 <p className="mt-5 text-foreground/75 text-lg leading-relaxed">{l.desc}</p>
               </div>
             </div>
-          ))}
+              );
+            })}
         </div>
       </section>
 
@@ -334,8 +342,8 @@ function DiscretionaryPage() {
             Opening a Umusave Discretionary Investment account is fully digital, guided, and designed to match you with the right investment approach from the outset.
           </p>
         </div>
-        <div className="mt-14 rounded-3xl overflow-hidden shadow-elegant aspect-[5/2] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-12">
-          <Brain className="h-20 w-20 text-primary/30" />
+        <div className="mt-14 rounded-3xl overflow-hidden shadow-elegant aspect-[5/2] mb-12">
+          <img src={collaborativeOffice} alt="From Registration to an Actively Managed Portfolio in Four Steps" className="h-full w-full object-cover" loading="lazy" />
         </div>
         <div className="grid md:grid-cols-4 gap-6">
           {processSteps.map((s, i) => (

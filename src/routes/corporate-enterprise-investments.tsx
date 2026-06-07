@@ -8,6 +8,10 @@ import {
 import { SiteShell } from "@/components/site/SiteShell";
 import heroImg from "@/assets/corporate-investments.png";
 import serviceImg from "@/assets/service-corporate.jpg";
+import collaborativeOffice from "@/assets/image/Collaborative-innovation-in-a-modern-office.png";
+import buildingTomorrow from "@/assets/image/Building-tomorrow-leaders-today.png";
+import portraitBusiness from "@/assets/image/portrait-business-happy-black-man-600nw-2655339117.webp";
+import futuristicGrowth from "@/assets/image/Futuristic-growth-and-innovation-landscape.png";
 
 export const Route = createFileRoute("/corporate-enterprise-investments")({
   head: () => ({
@@ -229,10 +233,12 @@ function CorporatePage() {
             </p>
           </div>
           <div className="mt-14 space-y-16">
-            {features.map((f, i) => (
+            {features.map((f, i) => {
+              const imgs = [collaborativeOffice, buildingTomorrow, portraitBusiness];
+              return (
               <div key={f.title} className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${i % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}>
-                <div className="rounded-3xl overflow-hidden shadow-elegant aspect-[5/4] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                  <f.icon className="h-24 w-24 text-primary/30" />
+                <div className="rounded-3xl overflow-hidden shadow-elegant aspect-[5/4]">
+                  <img src={imgs[i]} alt={f.title} className="h-full w-full object-cover" loading="lazy" />
                 </div>
                 <div>
                   <div className="h-12 w-12 rounded-full gradient-gold grid place-items-center text-gold-foreground">
@@ -245,7 +251,8 @@ function CorporatePage() {
                   )}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -270,13 +277,13 @@ function CorporatePage() {
                   <div>
                     <h4 className="font-display text-lg text-primary">{u.title}</h4>
                     <p className="text-foreground/70 text-sm leading-relaxed">{u.desc}</p>
-                  </div>
                 </div>
-              ))}
+              </div>
+            ))}
             </div>
           </div>
-          <div className="order-1 lg:order-2 rounded-3xl overflow-hidden shadow-elegant aspect-[5/4] bg-gradient-to-br from-gold/20 to-primary/10 flex items-center justify-center">
-            <Building2 className="h-24 w-24 text-primary/30" />
+          <div className="order-1 lg:order-2 rounded-3xl overflow-hidden shadow-elegant aspect-[5/4]">
+            <img src={futuristicGrowth} alt="A Regulated Investment Partner Your Business Can Rely On" className="h-full w-full object-cover" loading="lazy" />
           </div>
         </div>
       </section>
@@ -294,10 +301,10 @@ function CorporatePage() {
             </p>
           </div>
           <div className="mt-14 grid md:grid-cols-2 gap-8">
-            {profiles.map((p) => (
+            {profiles.map((p, i) => (
               <div key={p.title} className="bg-card rounded-3xl overflow-hidden shadow-soft border border-border/60">
-                <div className="aspect-[16/9] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                  <Users className="h-20 w-20 text-primary/30" />
+                <div className="aspect-[16/9] overflow-hidden">
+                  <img src={i === 0 ? buildingTomorrow : collaborativeOffice} alt={p.title} className="h-full w-full object-cover" loading="lazy" />
                 </div>
                 <div className="p-8">
                   <h3 className="font-display text-2xl text-primary">{p.title}</h3>
@@ -328,8 +335,8 @@ function CorporatePage() {
             Our Corporate onboarding process is structured, thorough, and designed to ensure your investment solution is precisely calibrated to your organisation's requirements from day one.
           </p>
         </div>
-        <div className="mt-14 rounded-3xl overflow-hidden shadow-elegant aspect-[5/2] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-12">
-          <Search className="h-20 w-20 text-primary/30" />
+        <div className="mt-14 rounded-3xl overflow-hidden shadow-elegant aspect-[5/2] mb-12">
+          <img src={futuristicGrowth} alt="From Initial Consultation to Active Capital Management in Four Steps" className="h-full w-full object-cover" loading="lazy" />
         </div>
         <div className="grid md:grid-cols-4 gap-6">
           {processSteps.map((s, i) => (
