@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import {
   ShieldCheck, Lock, Cpu, Sprout, ArrowRight, Check, Globe2,
   Briefcase, LineChart, Building2, Star, Headphones, Users, TrendingUp,
@@ -42,25 +43,25 @@ const services = [
     img: sBroking,
     title: "International Broking",
     desc: "Access stocks, bonds, commodities, currencies, futures and options across G7 markets — from right here in Africa.",
-    to: "/services" as const,
+    to: "/products" as const,
   },
   {
     img: sManaged,
     title: "Managed Accounts",
     desc: "Invest in expertly curated ETFs and pre-screened baskets built by the world's top fund managers.",
-    to: "/services" as const,
+    to: "/products" as const,
   },
   {
     img: sDiscretionary,
     title: "Discretionary Investments",
     desc: "Our AI-powered platform identifies high-conviction opportunities and dynamically manages your portfolio.",
-    to: "/services" as const,
+    to: "/products" as const,
   },
   {
     img: sCorporate,
     title: "Corporate & Enterprise",
     desc: "Grow business capital safely with creditworthy instruments — gain a trusted fractional CIO as your partner.",
-    to: "/services" as const,
+    to: "/products" as const,
   },
 ];
 
@@ -101,6 +102,47 @@ const faqs = [
     a: "The process is fully digital and paperless. Register online, complete your KYC, fund your account, and begin investing — all from your phone or computer.",
   },
 ];
+
+function ProductCarousel() {
+  const [api, setApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!api) return;
+    const t = setInterval(() => api.scrollNext(), 3000);
+    return () => clearInterval(t);
+  }, [api]);
+
+  return (
+    <Carousel opts={{ align: "start", loop: true }} setApi={setApi} className="mt-14">
+      <CarouselContent>
+        {services.map((s) => (
+          <CarouselItem key={s.title} className="basis-1/2 md:basis-1/3">
+            <Link
+              to={s.to}
+              className="group block overflow-hidden rounded-3xl bg-card shadow-soft hover:shadow-elegant transition h-full"
+            >
+              <div className="aspect-[16/10] overflow-hidden">
+                <img
+                  src={s.img}
+                  alt={s.title}
+                  className="h-full w-full object-cover group-hover:scale-105 transition duration-700"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-8">
+                <h3 className="font-display text-3xl text-primary">{s.title}</h3>
+                <p className="mt-3 text-foreground/70 leading-relaxed">{s.desc}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-gold font-semibold group-hover:gap-3 transition-all">
+                  Explore {s.title} <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </Link>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
+  );
+}
 
 function HomePage() {
   const [slide, setSlide] = useState(0);
@@ -150,10 +192,10 @@ function HomePage() {
                 Start Investing Today <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                to="/services"
+                to="/products"
                 className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/40 px-7 py-3.5 font-medium hover:bg-primary-foreground/10 transition"
               >
-                Explore Services
+                Explore Products
               </Link>
             </div>
           </div>
@@ -246,7 +288,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Services */}
+      {/* Products */}
       <section className="container mx-auto px-6 py-24 lg:py-32">
         <div className="max-w-2xl">
           <p className="text-gold uppercase tracking-[0.3em] text-xs font-semibold">What We Offer</p>
@@ -254,31 +296,7 @@ function HomePage() {
             Four Powerful Ways to Grow Your Wealth
           </h2>
         </div>
-        <div className="mt-14 grid md:grid-cols-2 gap-8">
-          {services.map((s) => (
-            <Link
-              key={s.title}
-              to={s.to}
-              className="group relative overflow-hidden rounded-3xl bg-card shadow-soft hover:shadow-elegant transition"
-            >
-              <div className="aspect-[16/10] overflow-hidden">
-                <img
-                  src={s.img}
-                  alt={s.title}
-                  className="h-full w-full object-cover group-hover:scale-105 transition duration-700"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="font-display text-2xl text-primary">{s.title}</h3>
-                <p className="mt-3 text-foreground/70 leading-relaxed">{s.desc}</p>
-                <span className="mt-6 inline-flex items-center gap-2 text-gold font-semibold group-hover:gap-3 transition-all">
-                  Explore {s.title} <ArrowRight className="h-4 w-4" />
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <ProductCarousel />
       </section>
 
       {/* Process */}

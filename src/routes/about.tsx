@@ -1,7 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Sprout, Globe2, Users, TrendingUp, ArrowRight } from "lucide-react";
-import { SiteShell, PageHero } from "@/components/site/SiteShell";
+import { Sprout, Globe2, Users, TrendingUp, ArrowRight, Linkedin } from "lucide-react";
+import { SiteShell } from "@/components/site/SiteShell";
 import hero3 from "@/assets/hero-3.jpg";
+import aboutHero from "@/assets/about.png";
+import shrutiImg from "@/assets/Shruti-Aggarwal.png";
+import chetanImg from "@/assets/ChetanLaddha.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -16,11 +19,22 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   return (
     <SiteShell>
-      <PageHero
-        eyebrow="About Umusave Capital"
-        title="Rooted in Legacy. Built for Growth."
-        subtitle="An emerging international financial services firm dedicated to giving residents of sub-Saharan Africa direct, regulated access to global investment markets."
-      />
+      <section className="relative overflow-hidden bg-primary text-primary-foreground">
+        <img src={aboutHero} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 gradient-hero" />
+        <div className="container mx-auto px-6 py-16 lg:py-24 relative">
+          <p className="text-gold uppercase tracking-[0.3em] text-xs font-semibold mb-5">
+            About Umusave Capital
+          </p>
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-balance max-w-4xl">
+            Rooted in Legacy. Built for Growth.
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-primary-foreground/85 max-w-2xl text-balance">
+            An emerging international financial services firm dedicated to giving residents of sub-Saharan Africa direct, regulated access to global investment markets.
+          </p>
+          <div className="mt-10 h-px w-32 bg-gold" />
+        </div>
+      </section>
 
       <section className="container mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center">
         <div>
@@ -90,6 +104,50 @@ function AboutPage() {
           >
             Join the Movement <ArrowRight className="h-4 w-4" />
           </Link>
+        </div>
+      </section>
+
+      <section className="bg-surface">
+        <div className="container mx-auto px-6 py-24 lg:py-32">
+          <div className="text-center max-w-3xl mx-auto">
+            <p className="text-gold uppercase tracking-[0.3em] text-xs font-semibold">Leadership</p>
+            <h2 className="mt-4 font-display text-4xl md:text-5xl text-balance">
+              Built by Experience. Led by Vision.
+            </h2>
+          </div>
+          <div className="mt-16 grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            {[
+              {
+                img: shrutiImg,
+                name: "Shruti Aggarwal",
+                role: "CEO / CFO",
+                desc: "18+ years in investment strategy, capital structuring, and infrastructure finance. Led development and financing of a $300M energy asset. Harvard Business School GMP | London Business School alumna.",
+              },
+              {
+                img: chetanImg,
+                name: "Chetan Laddha",
+                role: "CTO",
+                desc: "15+ years in scientific modelling and algorithmic systems. Experience across global energy and technology platforms. Advisor on energy transition and data-driven systems.",
+              },
+            ].map((p) => (
+              <div key={p.name} className="bg-card rounded-3xl overflow-hidden shadow-soft border border-border/60">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img src={p.img} alt={p.name} className="h-full w-full object-cover object-top" loading="lazy" />
+                </div>
+                <div className="p-6">
+                  <p className="text-gold uppercase tracking-[0.2em] text-xs font-semibold">{p.role}</p>
+                  <h3 className="mt-2 font-display text-3xl text-primary">{p.name}</h3>
+                  <p className="mt-4 text-foreground/75 leading-relaxed">{p.desc}</p>
+                  <a
+                    href="#"
+                    className="mt-5 inline-flex items-center gap-2 text-gold hover:underline font-medium"
+                  >
+                    <Linkedin className="h-4 w-4" /> LinkedIn
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </SiteShell>

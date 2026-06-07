@@ -1,25 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, TrendingUp, Briefcase, LineChart, Building2, Check } from "lucide-react";
-import { SiteShell, PageHero } from "@/components/site/SiteShell";
-import sBroking from "@/assets/service-broking.jpg";
-import sManaged from "@/assets/service-managed.jpg";
-import sDiscretionary from "@/assets/service-discretionary.jpg";
-import sCorporate from "@/assets/service-corporate.jpg";
-
-export const Route = createFileRoute("/services")({
+import { SiteShell } from "@/components/site/SiteShell";
+import aboutHero from "@/assets/product.png";
+import productImg from "@/assets/product.png";
+import InternationalBrokingImg from "@/assets/international-broking.png";
+import managedAccountsImg from "@/assets/managed-accounts.png";
+import discretionaryInvestmentsImg from "@/assets/discretionary-investments.png";
+import corporateInvestmentsImg from "@/assets/corporate-investments.png";
+export const Route = createFileRoute("/products")({
   head: () => ({
     meta: [
-      { title: "Services — Umusave Capital" },
+      { title: "Products — Umusave Capital" },
       { name: "description", content: "International Broking, Managed Accounts, Discretionary Investments and Corporate & Enterprise solutions." },
     ],
   }),
-  component: ServicesPage,
+  component: ProductsPage,
 });
 
 const services = [
   {
     icon: Briefcase,
-    img: sBroking,
+    img: InternationalBrokingImg,
     title: "International Broking",
     headline: "Access the World's Largest Financial Markets.",
     desc: "Direct access to G7 equity markets — covering stocks, commodities, bonds, currencies, futures and options. Now available locally in Rwanda, Zambia and Tanzania through a regulated platform.",
@@ -34,7 +35,7 @@ const services = [
   },
   {
     icon: LineChart,
-    img: sManaged,
+    img: managedAccountsImg,
     title: "Managed Accounts",
     headline: "Invest Alongside the World's Best Fund Managers.",
     desc: "Sector-specific ETFs, structured and specialised products. Pre-screened investment baskets from top-tier global investment managers — an exclusive access point previously unavailable to retail investors in the region.",
@@ -48,7 +49,7 @@ const services = [
   },
   {
     icon: TrendingUp,
-    img: sDiscretionary,
+    img: discretionaryInvestmentsImg,
     title: "Discretionary Investments",
     headline: "Institutional-Grade Investment Intelligence. Now Accessible to You.",
     desc: "A specialised investment platform deploying capital into high-conviction opportunities — cyclical compounders, growth-stage companies, and hybrid allocation strategies — powered by a proprietary AI algorithm with human-led risk control.",
@@ -64,7 +65,7 @@ const services = [
   },
   {
     icon: Building2,
-    img: sCorporate,
+    img: corporateInvestmentsImg,
     title: "Corporate & Enterprise Investments",
     headline: "Make Your Business Capital Work Harder — Safely.",
     desc: "Safe and creditworthy instruments to grow business capital. Offering both liquidity and capital appreciation, Umusave becomes a reliable financial and investment management partner — a fractional CIO for your treasury.",
@@ -78,14 +79,25 @@ const services = [
   },
 ];
 
-function ServicesPage() {
+function ProductsPage() {
   return (
     <SiteShell>
-      <PageHero
-        eyebrow="Core Offerings"
-        title="Four Powerful Ways to Grow Your Wealth"
-        subtitle="From first-time retail investors to corporate treasuries — Umusave Capital operates across four core investment and wealth management verticals."
-      />
+      <section className="relative overflow-hidden bg-primary text-primary-foreground">
+        <img src={aboutHero} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 gradient-hero" />
+        <div className="container mx-auto px-6 py-16 lg:py-24 relative">
+          <p className="text-gold uppercase tracking-[0.3em] text-xs font-semibold mb-5">
+            Core Offerings
+          </p>
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-balance max-w-4xl">
+            Four Powerful Ways to Grow Your Wealth
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-primary-foreground/85 max-w-2xl text-balance">
+            From first-time retail investors to corporate treasuries — Umusave Capital operates across four core investment and wealth management verticals.
+          </p>
+          <div className="mt-10 h-px w-32 bg-gold" />
+        </div>
+      </section>
 
       <section className="container mx-auto px-6 py-24 space-y-32">
         {services.map((s, i) => (

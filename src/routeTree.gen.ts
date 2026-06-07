@@ -9,26 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TechnologyRouteImport } from './routes/technology'
-import { Route as ServicesRouteImport } from './routes/services'
-import { Route as GovernanceRouteImport } from './routes/governance'
+import { Route as ProductsRouteImport } from './routes/products'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
-const TechnologyRoute = TechnologyRouteImport.update({
-  id: '/technology',
-  path: '/technology',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GovernanceRoute = GovernanceRouteImport.update({
-  id: '/governance',
-  path: '/governance',
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -51,78 +39,43 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/governance': typeof GovernanceRoute
-  '/services': typeof ServicesRoute
-  '/technology': typeof TechnologyRoute
+  '/products': typeof ProductsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/governance': typeof GovernanceRoute
-  '/services': typeof ServicesRoute
-  '/technology': typeof TechnologyRoute
+  '/products': typeof ProductsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/governance': typeof GovernanceRoute
-  '/services': typeof ServicesRoute
-  '/technology': typeof TechnologyRoute
+  '/products': typeof ProductsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/contact'
-    | '/governance'
-    | '/services'
-    | '/technology'
+  fullPaths: '/' | '/about' | '/contact' | '/products'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/governance' | '/services' | '/technology'
-  id:
-    | '__root__'
-    | '/'
-    | '/about'
-    | '/contact'
-    | '/governance'
-    | '/services'
-    | '/technology'
+  to: '/' | '/about' | '/contact' | '/products'
+  id: '__root__' | '/' | '/about' | '/contact' | '/products'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  GovernanceRoute: typeof GovernanceRoute
-  ServicesRoute: typeof ServicesRoute
-  TechnologyRoute: typeof TechnologyRoute
+  ProductsRoute: typeof ProductsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/technology': {
-      id: '/technology'
-      path: '/technology'
-      fullPath: '/technology'
-      preLoaderRoute: typeof TechnologyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/governance': {
-      id: '/governance'
-      path: '/governance'
-      fullPath: '/governance'
-      preLoaderRoute: typeof GovernanceRouteImport
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -153,10 +106,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  GovernanceRoute: GovernanceRoute,
-  ServicesRoute: ServicesRoute,
-  TechnologyRoute: TechnologyRoute,
+  ProductsRoute: ProductsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react";
-import { SiteShell, PageHero } from "@/components/site/SiteShell";
+import { SiteShell } from "@/components/site/SiteShell";
+import contactImg from "@/assets/about.png";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -17,11 +18,22 @@ function ContactPage() {
   const [sent, setSent] = useState(false);
   return (
     <SiteShell>
-      <PageHero
-        eyebrow="Get in Touch"
-        title="Speak with Our Team"
-        subtitle="Whether you are an individual investor, a business or simply curious — our team is ready to help you take the first step."
-      />
+      <section className="relative overflow-hidden bg-primary text-primary-foreground">
+        <img src={contactImg} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 gradient-hero" />
+        <div className="container mx-auto px-6 py-16 lg:py-24 relative">
+          <p className="text-gold uppercase tracking-[0.3em] text-xs font-semibold mb-5">
+            Get in Touch
+          </p>
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-balance max-w-4xl">
+            Speak with Our Team
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-primary-foreground/85 max-w-2xl text-balance">
+            Whether you are an individual investor, a business or simply curious — our team is ready to help you take the first step.
+          </p>
+          <div className="mt-10 h-px w-32 bg-gold" />
+        </div>
+      </section>
 
       <section className="container mx-auto px-6 py-24 grid lg:grid-cols-5 gap-12">
         <div className="lg:col-span-2 space-y-6">
