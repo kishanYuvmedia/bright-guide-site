@@ -52,7 +52,7 @@ const services = [
   {
     icon: TrendingUp,
     img: discretionaryInvestmentsImg,
-    to: undefined,
+    to: "/discretionary-investments",
     title: "Discretionary Investments",
     headline: "Institutional-Grade Investment Intelligence. Now Accessible to You.",
     desc: "A specialised investment platform deploying capital into high-conviction opportunities — cyclical compounders, growth-stage companies, and hybrid allocation strategies — powered by a proprietary AI algorithm with human-led risk control.",
