@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, ChevronRight } from "lucide-react";
 import { Logo } from "./Logo";
 
 const nav = [
@@ -21,6 +21,7 @@ const nav = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/60">
       <div className="hidden lg:block bg-primary text-primary-foreground/90 text-xs">
@@ -91,19 +92,36 @@ export function Header() {
             {nav.map((n) =>
               "children" in n ? (
                 <div key={n.label}>
-                  <span className="py-2 block text-foreground/60 text-xs uppercase tracking-wider font-semibold">{n.label}</span>
-                  <div className="flex flex-col gap-1 pl-4 border-l-2 border-border mb-2">
-                    {n.children.map((c) => (
-                      <Link
-                        key={c.to}
-                        to={c.to}
-                        onClick={() => setOpen(false)}
-                        className="py-1.5 text-foreground/80 hover:text-primary"
-                      >
-                        {c.label}
-                      </Link>
-                    ))}
+                  <div className="flex items-center justify-between">
+                    <Link
+                      to={n.to}
+                      onClick={() => setOpen(false)}
+                      className="py-2 text-foreground/80 hover:text-primary text-xs uppercase tracking-wider font-semibold"
+                    >
+                      {n.label}
+                    </Link>
+                    <button
+                      onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                      className="p-1 text-foreground/60 hover:text-primary transition-colors"
+                      aria-label="Toggle products submenu"
+                    >
+                      {mobileProductsOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+                    </button>
                   </div>
+                  {mobileProductsOpen && (
+                    <div className="flex flex-col gap-1 pl-4 border-l-2 border-border mb-2">
+                      {n.children.map((c) => (
+                        <Link
+                          key={c.to}
+                          to={c.to}
+                          onClick={() => setOpen(false)}
+                          className="py-1.5 text-foreground/80 hover:text-primary"
+                        >
+                          {c.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <Link
