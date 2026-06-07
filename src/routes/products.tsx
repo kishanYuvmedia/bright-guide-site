@@ -3,9 +3,9 @@ import { ArrowRight, TrendingUp, Briefcase, LineChart, Building2, Check } from "
 import { SiteShell } from "@/components/site/SiteShell";
 import aboutHero from "@/assets/product.png";
 import productImg from "@/assets/product.png";
-import InternationalBrokingImg from "@/assets/international-broking.png";
-import managedAccountsImg from "@/assets/managed-accounts.png";
-import discretionaryInvestmentsImg from "@/assets/discretionary-investments.png";
+import InternationalBrokingImg from "@/assets/International-Broking.png";
+import managedAccountsImg from "@/assets/Managed-Accounts.png";
+import discretionaryInvestmentsImg from "@/assets/Discretionary-Investments.png";
 import corporateInvestmentsImg from "@/assets/corporate-investments.png";
 export const Route = createFileRoute("/products")({
   head: () => ({
