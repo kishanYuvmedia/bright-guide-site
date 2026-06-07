@@ -21,6 +21,7 @@ const services = [
   {
     icon: Briefcase,
     img: InternationalBrokingImg,
+    to: "/international-broking",
     title: "International Broking",
     headline: "Access the World's Largest Financial Markets.",
     desc: "Direct access to G7 equity markets — covering stocks, commodities, bonds, currencies, futures and options. Now available locally in Rwanda, Zambia and Tanzania through a regulated platform.",
@@ -36,6 +37,7 @@ const services = [
   {
     icon: LineChart,
     img: managedAccountsImg,
+    to: undefined,
     title: "Managed Accounts",
     headline: "Invest Alongside the World's Best Fund Managers.",
     desc: "Sector-specific ETFs, structured and specialised products. Pre-screened investment baskets from top-tier global investment managers — an exclusive access point previously unavailable to retail investors in the region.",
@@ -50,6 +52,7 @@ const services = [
   {
     icon: TrendingUp,
     img: discretionaryInvestmentsImg,
+    to: undefined,
     title: "Discretionary Investments",
     headline: "Institutional-Grade Investment Intelligence. Now Accessible to You.",
     desc: "A specialised investment platform deploying capital into high-conviction opportunities — cyclical compounders, growth-stage companies, and hybrid allocation strategies — powered by a proprietary AI algorithm with human-led risk control.",
@@ -66,6 +69,7 @@ const services = [
   {
     icon: Building2,
     img: corporateInvestmentsImg,
+    to: undefined,
     title: "Corporate & Enterprise Investments",
     headline: "Make Your Business Capital Work Harder — Safely.",
     desc: "Safe and creditworthy instruments to grow business capital. Offering both liquidity and capital appreciation, Umusave becomes a reliable financial and investment management partner — a fractional CIO for your treasury.",
@@ -140,6 +144,14 @@ function ProductsPage() {
                 <p className="mt-5 text-xs text-muted-foreground italic leading-relaxed">
                   {s.disclaimer}
                 </p>
+              )}
+              {s.to && (
+                <Link
+                  to={s.to}
+                  className="mt-6 inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all"
+                >
+                  Read More <ArrowRight className="h-4 w-4" />
+                </Link>
               )}
             </div>
           </article>
