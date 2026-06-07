@@ -37,7 +37,7 @@ const services = [
   {
     icon: LineChart,
     img: managedAccountsImg,
-    to: undefined,
+    to: "/managed-accounts",
     title: "Managed Accounts",
     headline: "Invest Alongside the World's Best Fund Managers.",
     desc: "Sector-specific ETFs, structured and specialised products. Pre-screened investment baskets from top-tier global investment managers — an exclusive access point previously unavailable to retail investors in the region.",
